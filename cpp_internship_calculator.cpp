@@ -1,54 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void add()
+void add(double a, double b)
 {
-    int a, b;
-    cout << "enter the first number :";
-    cin >> a;
-    cout << "enter the second number :";
-    cin >> b;
-
     cout << "the answer is " << a + b << endl;
 }
 
-void sub()
+void sub(double a, double b)
 {
-    int a, b;
-    cout << "enter the first number :";
-    cin >> a;
-    cout << "enter the second number :";
-    cin >> b;
-
     cout << "the answer is " << a - b << endl;
 }
 
-void mul()
+void mul(double a, double b)
 {
-    int a, b;
-    cout << "enter the first number :";
-    cin >> a;
-    cout << "enter the second number :";
-    cin >> b;
-
     cout << "the answer is " << a * b << endl;
 }
 
-void divide()
+void divide(double a, double b)
 {
-    int a, b;
-    cout << "enter the first number :";
-    cin >> a;
-    cout << "enter the second number :";
-    cin >> b;
-
     while (b == 0)
     {
-        cout << "enter a valid number, denominator can't be 0!!!!" << endl;
-        cin >> b;
+        cout << "denominator can't be 0!!!" << endl;
+        while(!(cin >> b)){
+            cout << "enter a valid number!!!" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
     }
 
-    cout << "the answer is " << (double)a / b << endl;
+    cout << "The answer is " << a / b << endl;
 }
 
 int main()
@@ -56,27 +36,48 @@ int main()
     int operation = 0;
     while (operation != 5)
     {
-        cout << "========== calculator ==========" << endl;
-        cout << "enter 1 for adding two number : " << endl;
-        cout << "enter 2 for subtracting two number : " << endl;
-        cout << "enter 3 for multiplying two number : " << endl;
-        cout << "enter 4 for dividing two number : " << endl;
-        cout << "enter 5 for exit the calculator : " << endl;
-        cout << "================================" << endl;
+        cout << "====================" << endl;
+        cout << "enter 1 for adding two number: " << endl;
+        cout << "enter 2 for subtracting two number: " << endl;
+        cout << "enter 3 for multiplying two number: " << endl;
+        cout << "enter 4 for dividing two number: " << endl;
+        cout << "enter 5 to exit: " << endl;
 
-        cin >> operation;
+        while (!(cin >> operation) || operation <= 0 || operation >= 6)
+        {
+            cout << "Enter a valid operation (1-5): ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        if (operation == 5)
+            break;
+
+        double a, b;
+
+        cout << "enter the first number: " << endl;
+        while (!(cin >> a))
+        {
+            cout << "enter a valid number!!!" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
+        cout << "enter the second number: " << endl;
+        while (!(cin >> b))
+        {
+            cout << "enter a valid number!!!" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
         if (operation == 1)
-            add();
-        else if (operation == 2)
-            sub();
-        else if (operation == 3)
-            mul();
-        else if (operation == 4)
-            divide();
-        else if (operation == 5)
-            continue;
-        else
-            cout << "enter a number between 1 to 5!!!" << endl;
+            add(a, b);
+        if (operation == 2)
+            sub(a, b);
+        if (operation == 3)
+            mul(a, b);
+        if (operation == 4)
+            divide(a, b);
     }
     return 0;
 }
